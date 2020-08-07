@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<title>Document</title>
+<script>
+function playRound(playerSelection, computerSelection) {
+    if(playerSelection === computerSelection){
+        return 'seri';
+    }
+    else if(playerSelection === 'gunting'){
+        if(computerSelection === 'batu'){
+            return 'kalah';
+        }else{
+            return 'menang';
+        }
+    }else if(playerSelection === 'batu'){
+        if(computerSelection === 'kertas'){
+            return 'kalah';
+        }else{
+            return 'menang';
+        }
+    }else{ //kertas
+        if(computerSelection === 'gunting'){
+            return 'kalah';
+        }else{
+            return 'menang';
+        }
+    }
+}
+
+function computerPlay(){
+    const a = Math.floor((Math.random() * 3) + 1);
+    switch(a){
+        case 1:
+            return 'gunting';
+        break;
+        case 2:
+            return 'batu';
+        break;
+        case 3:
+            return 'kertas';
+        break;
+    }
+}
+//konsta tidak akan berubah
+// const playerSelection = 'batu';
+// const computerSelection = computerPlay();
+// console.log(playerSelection + " lawan " + computerSelection + " maka "+playRound(playerSelection, computerSelection));
+
+function game(){
+    let SkorPemain = 0;
+    let SkorKomputer = 0;
+    // console.log(`skor : pemain = ${SkorPemain}, komputer = ${SkorKomputer}`);
+    for(let x=1;x<6;x++){
+        let playerSelection = prompt("masukkan pilihan");
+        let computerSelection = computerPlay();
+        console.log(playerSelection + " lawan " + computerSelection + " maka "+playRound(playerSelection, computerSelection));
+        if(playRound(playerSelection, computerSelection) == 'menang'){
+            SkorPemain++;
+        }else if(playRound(playerSelection, computerSelection) == 'kalah'){
+            SkorKomputer++;
+        }
+        console.log(`Ronde ${x}, skor : pemain = ${SkorPemain}, komputer = ${SkorKomputer}`);
+    }
+    // console.log(`Skor final : pemain = ${SkorPemain}, komputer = ${SkorKomputer}`);
+
+    let a = prompt("main lagi?");
+    if(a=='ya'){
+    }else{
+        game();
+        return 0;
+    }
+}
+</script>
